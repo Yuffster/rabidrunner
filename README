@@ -25,6 +25,26 @@ base Test class.
 
 Test methods begin with 'should_'.
 
+Running Tests
+==============
+
+To run tests, create a new TestRunner (or child) object.   The constructor
+method takes three distinct parameters:
+
+	NULL   : The TestRunner will search through the test directory for every
+		     file ending in Test.php, and add each test to the test queue.
+
+	String : The name of the test to run.  Ie, TestRunner, DataModel, Alarm.
+	         The name will prepended with 'Test' and the appropriate file will
+			 be loaded from the tests directory.  Ie, TestRunner will invoke
+			 TestRunnerTest.php, or the TestRunnerTest class.
+
+	Array  : An array of strings is the equivalent of creating multiple
+	         TestRunner objects.
+
+Calling the runTests() metho of the TestRunner object will return the result of
+the operation.  Use a print_r on the resulting data to explore its contents.
+
 Failures and Success
 ==============
 
