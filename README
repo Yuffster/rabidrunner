@@ -35,9 +35,9 @@ method takes three distinct parameters:
 		     file ending in Test.php, and add each test to the test queue.
 
 	String : The name of the test to run.  Ie, TestRunner, DataModel, Alarm.
-	         The name will prepended with 'Test' and the appropriate file will
-			 be loaded from the tests directory.  Ie, TestRunner will invoke
-			 TestRunnerTest.php, or the TestRunnerTest class.
+		     The name will prepended with 'Test' and the appropriate file will
+		     be loaded from the tests directory.  Ie, TestRunner will invoke
+		     TestRunnerTest.php, or the TestRunnerTest class.
 
 	Array  : An array of strings is the equivalent of creating multiple
 	         TestRunner objects.
