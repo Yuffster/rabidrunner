@@ -126,7 +126,7 @@ Or we could create a custom handler method and place it within the TestRunner
 class (or a child class).  It might look something like the following:
 
 	protected function handle_should_buzz($error) {
-		if (!$this->testObj->alarm->buzzing) "Alarm should buzz.";
+		if (!$this->testObj->alarm->buzzing) return "Alarm should buzz.";
 	}
 
 Now, each method which begins with should_buzz will automatically check to see
