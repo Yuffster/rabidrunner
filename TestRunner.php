@@ -4,7 +4,7 @@ define('TEST_DIR', 'tests'); //Amazing configuration.
 
 /**
  * A simple TestRunner class for running unit tests.
- * @author Michelle Steigerwalt <msteigerwalt at gmail>
+ * @author Michelle Steigerwalt <http://msteigerwalt.com>
  * @license MIT
  */
 class TestRunner {

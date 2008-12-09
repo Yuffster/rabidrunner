@@ -1,5 +1,10 @@
 <?
 
+/**
+ * A very basic Test class.  Meant to be extended.
+ * @author Michelle Steigerwalt <http://msteigerwalt.com>
+ * @license MIT
+ */
 class Test {
 
 	public $testObject = null;
