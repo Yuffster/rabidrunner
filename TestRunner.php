@@ -108,21 +108,31 @@ class TestRunner {
 	 */
 	protected function runMultipleTests() {
 		$return = Array();
-		//If we don't have a list of tests to run, search the test dir.
-		if (!count($this->testsToRun)) {
-			$dir = opendir(TEST_DIR);
-			while (false !== ($f = readdir($dir))) {
-				if (!preg_match('/Test.php$/', $f)) continue;
-				$name = preg_replace('/Test.php/', '', $f);
-				$this->testsToRun[] = $name;
-			}
-		} 
+		//If we don't have a list of tests to run, find all available ones.
+		if (!count($this->testsToRun)) { 
+			$this->testsToRun = $this->findAllTests();
+		}
 		//Run the tests and return the result.
 		foreach ($this->testsToRun as $test) {
 			$runner = new TestRunner($test);
 			$runner->runTests();
 			$return[] = $runner;
 		} return $return;
+	}
+
+	/**
+	 * Searches through the test subdirectory to find all test files.  This
+	 * method can be overridden by a child class to take into account unique
+	 * environment settings.
+	 */
+	protected function findAllTests() {
+		$tests = Array();
+		$dir = opendir(TEST_DIR);
+		while (false !== ($f = readdir($dir))) {
+			if (!preg_match('/Test.php$/', $f)) continue;
+			$name = preg_replace('/Test.php/', '', $f);
+			$tests[] = $name;
+		} return $test;
 	}
 
 	/**
