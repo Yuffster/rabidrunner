@@ -50,11 +50,10 @@ class TestRunner {
 		if ($this->runMultiple == true) { return $this->runMultipleTests();  }
 		//Handle a single test class.
 		$this->testObj->before();
-		$ref = new ReflectionClass($this->testObj);
-		$methods = $ref->getMethods();
-		foreach ($methods as $test) {
-			if (preg_match('/^should_/', $test->name)) {
-				$this->doTest($test->name);
+		foreach (get_class_methods($this->testObj) as $meth) {
+			//If the method name starts with 'should'.
+			if (strpos($meth, 'should_') === 0) {
+				$this->doTest($meth);
 			}
 		}
 		$this->testObj->after();
@@ -132,7 +131,7 @@ class TestRunner {
 			if (!preg_match('/Test.php$/', $f)) continue;
 			$name = preg_replace('/Test.php/', '', $f);
 			$tests[] = $name;
-		} return $test;
+		} return $tests;
 	}
 
 	/**
