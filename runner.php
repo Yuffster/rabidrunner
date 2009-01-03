@@ -52,9 +52,7 @@ elseif ($f == 'json' OR 'jsonp'):
 /******************************************************************************
  ////////////////////////////// OUTPUT HTML ///////////////////////////////////
  *****************************************************************************/
-?>
-<? else: ?>
-	<? foreach ($results as $test): ?>
+else: foreach ($results as $test): ?>
 		<h2>
 			<?= $test->name; ?>:
 			<?= $test->passing + $test->expectedFailures ?>/<?=$test->passing+$test->failing?>
