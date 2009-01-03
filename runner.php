@@ -29,10 +29,10 @@
 	$return = Array();
 	foreach ($results as $test):
 		$return[] = Array('title'=>$test->name,
-	                    'expectedFailures'=>$test->expectedFailures,
-		    		    'passing'=>$test->passing,
-						'failing'=>$test->failing,
-		                'results'=>$test->results);
+		                  'expectedFailures'=>$test->expectedFailures,
+		                  'passing'=>$test->passing,
+		                  'failing'=>$test->failing,
+		                  'results'=>$test->results);
 	endforeach;
 	$json = json_encode($return);
 	$id = $_GET['id'];
