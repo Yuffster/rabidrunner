@@ -1,12 +1,17 @@
 <?
-	include('TestRunner.php');
-	include('Test.php');
-	$runner = new TestRunner();
-	$results = $runner->runTests();
-	$f = $_GET['format'];
+include('TestRunner.php');
+include('Test.php');
+$runner = new TestRunner();
+$results = $runner->runTests();
+$f = $_GET['format'];
+
+/******************************************************************************
+ /////////////////////////////// OUTPUT XML ///////////////////////////////////
+ *****************************************************************************/
+if ($f == 'xml'):
+	header("Content-Type: text/xml");
+	echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
-<? if ($f == 'xml'): header("Content-Type: text/xml");?>
-<?="<?"?>xml version="1.0" encoding="UTF-8"?>
 	<results>
 		<?foreach ($results as $test) : ?>
 			<set title="<?=$test->name?>">
@@ -24,7 +29,12 @@
 			</set>
 		<?endforeach;?>
 	</results>
-<? elseif ($f == 'json' OR 'jsonp'):
+<?
+
+/******************************************************************************
+ /////////////////////////////// OUTPUT JSON //////////////////////////////////
+ *****************************************************************************/
+elseif ($f == 'json' OR 'jsonp'):
 	header("Content-Type: text/javascript");
 	$return = Array();
 	foreach ($results as $test):
@@ -34,11 +44,14 @@
 		                  'failing'=>$test->failing,
 		                  'results'=>$test->results);
 	endforeach;
-	$json = json_encode($return);
-	$id = $_GET['id'];
+	//Optional JSON-P callback wrapper.
 	if ($f == 'jsonp') echo "rabidrunner_callback[$_GET[id]](";
-	echo $json;
+	echo json_encode($return);
 	if ($f == 'jsonp') echo ");";
+
+/******************************************************************************
+ ////////////////////////////// OUTPUT HTML ///////////////////////////////////
+ *****************************************************************************/
 ?>
 <? else: ?>
 	<? foreach ($results as $test): ?>
